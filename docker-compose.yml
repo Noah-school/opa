@@ -1,0 +1,41 @@
+volumes:   
+  nodemodules:
+
+services:
+  spa:
+    image: websec-spa
+    build:
+      context: ./SPA
+      dockerfile: Dockerfile
+    volumes:
+      - ./SPA:/usr/src/app
+      - nodemodules:/usr/src/app/node_modules
+    networks:
+     - default 
+    ports:
+     - 3000:3000
+
+  api:
+    image: websec-api
+    build:
+      context: ./API
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_URLS=http://+:5172
+    volumes:
+      - ./API:/app
+    networks:
+     - default 
+    ports:
+     - 5172:5172
+
+  opa:
+    container_name: opa
+    image: openpolicyagent/opa:latest
+    ports:
+      - 8181:8181
+    command: ["run", "--server", "--addr", "0.0.0.0:8181", "--log-level", "debug", "/OPA"]
+    networks:
+     - default
+    volumes:
+      - ./OPA:/OPA:ro

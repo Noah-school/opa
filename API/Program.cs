@@ -1,4 +1,5 @@
 using API.Authorization;
+using API.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using OpenPolicyAgent.Opa;
@@ -6,12 +7,10 @@ using OpenPolicyAgent.Opa.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Read values from appsettings.json
 var jwtAuthority = builder.Configuration["Jwt:Authority"];
 var jwtAudience = builder.Configuration["Jwt:Audience"];
 var corsOrigin = builder.Configuration["Cors:Origin"];
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddAuthentication(options =>
@@ -26,16 +25,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IContextDataProvider, PostBodyContextDataProvider>();
 
-// builder.Services.AddAuthorization(options =>
-// {
-//     options.FallbackPolicy = new AuthorizationPolicyBuilder()
-//         .RequireAuthenticatedUser()
-//         .Build();
-//     options.AddPolicy("Over16Only", policy =>
-//             policy.Requirements.Add(new AgeRequirement(16)));
-// });
-// builder.Services.AddSingleton<IAuthorizationHandler, AgeHandler>();
 
 var app = builder.Build();
 
@@ -48,9 +39,9 @@ app.UseCors(options => options
     .AllowAnyHeader());
 
 app.UseAuthentication();
-app.UseAuthorization();
+// app.UseAuthorization();
 
-app.UseMiddleware<OpaAuthorizationMiddleware>(opaClient, "example/allow");
+app.UseMiddleware<OpaAuthorizationMiddleware>(opaClient, "system/main");
 
 app.MapControllers();
 

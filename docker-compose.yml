@@ -34,7 +34,7 @@ services:
     image: openpolicyagent/opa:latest
     ports:
       - 8181:8181
-    command: ["run", "--server", "--addr", "0.0.0.0:8181", "--log-level", "debug", "/OPA"]
+    command: ["run", "--server","--log-level","debug","--addr=0.0.0.0:8181","--set=decision_logs.console=true" ,"--log-format=json-pretty","/OPA"]
     networks:
      - default
     volumes:

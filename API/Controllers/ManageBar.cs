@@ -5,7 +5,7 @@ namespace API.Controllers
 {
     [Produces("application/json")]
     [Route("api/managebar")]
-    [Authorize(Roles = "Bartender")]
+    // [Authorize(Roles = "Bartender")]
     public class ManageBarController : Controller
     {
         [HttpPost]

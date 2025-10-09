@@ -5,7 +5,7 @@ namespace API.Controllers
 {
     [Produces("application/json")]
     [Route("api/bar")]
-    [Authorize(Roles = "Customer,Bartender")]
+    // [Authorize(Roles = "Customer,Bartender")]
     // [Authorize(Policy = "Over16Only")]
     public class BarController : Controller
     {

@@ -208,11 +208,11 @@ linkStyle 3 stroke:#ff6600,stroke-width:2px
 
 ### Originele Beveiligingsmaatregelen
 
-| C01 | **Geen authenticatie geïmplementeerd**           |
+| B01 | **Geen authenticatie geïmplementeerd**           |
 | --- | ------------------------------------------------ |
-| C02 | **Minimale invoervalidatie**                     |
-| C03 | **Geen digitale handtekeningen geïmplementeerd** |
-| C06 | **Geen rate limiting of DoS bescherming**        |
+| B02 | **Minimale invoervalidatie**                     |
+| B03 | **Geen digitale handtekeningen geïmplementeerd** |
+| B06 | **Geen rate limiting of DoS bescherming**        |
 
 ### Bevellings problemen
 - Geen authenticatiemechanisme aanwezig
@@ -310,14 +310,14 @@ style BrowserStorage fill:#f8d7da,stroke:#721c24,stroke-width:2px
 
 ### Nieuwe Beveiligingsmaatregelen
 
-| C01 | **Authenticatie (OAuth 2.0/OIDC via Auth0)**                     |
+| B01 | **Authenticatie (OAuth 2.0/OIDC via Auth0)**                     |
 | --- | ---------------------------------------------------------------- |
-| C02 | **Autorisatie via OPA beleidsregels (rol & leeftijd gebaseerd)** |
-| C03 | **Invoervalidatie en sanitization (basis)**                      |
-| C04 | **JWT token validatie**                                          |
-| C06 | **Request body inspectie voor leeftijdsverificatie**             |
-| C07 | **rate limiting of DoS bescherming door Oauth**                  |
-| C08 | berijd tot audits via Oauth                                      |
+| B02 | **Autorisatie via OPA beleidsregels (rol & leeftijd gebaseerd)** |
+| B03 | **Invoervalidatie en sanitization (basis)**                      |
+| B04 | **JWT token validatie**                                          |
+| B06 | **Request body inspectie voor leeftijdsverificatie**             |
+| B07 | **rate limiting of DoS bescherming door Oauth**                  |
+| B08 | berijd tot audits via Oauth                                      |
 
 ### Bevellings oplossingen
 - OAuth 2.0 integratie met Auth0
